@@ -42,32 +42,53 @@ function mergeSort(arr) {
     return arr;
   }
 
-  for (let i = 0; i < arrLeft.length; i++) {
-    let indexRight = 0;
-    let pushed = false;
-    for (let j = 0; j < arrRight.length; j++) {
-      if (arrLeft[i] < arrRight[j]) {
-        arrSorted.push(arrLeft[i]);
-        pushed = true
-        break;
-      } else {
-        arrSorted.push(arrRight[j]);
-        indexRight++;
-      }
+  let i = 0;
+  let j = 0;
+  while (i < arrLeft.length && j < arrRight.length) {
+    if (arrLeft[i] < arrRight[j]){
+      arrSorted.push(arrLeft[i])
+      i++;
+    }else{
+      arrSorted.push(arrRight[j])
+      j++
     }
-    arrRight = arrRight.splice(indexRight);
-    if (i + 1 >= arrLeft.length && arrRight.length > 0) {
-      for (let x = 0; x < arrRight.length; x++) {
-        arrSorted.push(arrRight[x]);
-      }
-    }
-    if (!pushed && arrRight.length < 1){
-        arrSorted.push(arrLeft[i])
-    }
+
   }
+  while(i < arrLeft.length){
+    arrSorted.push(arrLeft[i])
+    i++
+  }
+  while(j < arrRight.length){
+    arrSorted.push(arrRight[j])
+    j++
+  }
+
+  // for (let i = 0; i < arrLeft.length; i++) {
+  //   let indexRight = 0;
+  //   let pushed = false;
+  //   for (let j = 0; j < arrRight.length; j++) {
+  //     if (arrLeft[i] < arrRight[j]) {
+  //       arrSorted.push(arrLeft[i]);
+  //       pushed = true
+  //       break;
+  //     } else {
+  //       arrSorted.push(arrRight[j]);
+  //       indexRight++;
+  //     }
+  //   }
+  //   arrRight = arrRight.splice(indexRight);
+  //   if (i + 1 >= arrLeft.length && arrRight.length > 0) {
+  //     for (let x = 0; x < arrRight.length; x++) {
+  //       arrSorted.push(arrRight[x]);
+  //     }
+  //   }
+  //   if (!pushed && arrRight.length < 1){
+  //       arrSorted.push(arrLeft[i])
+  //   }
+  // }
   return arrSorted;
 }
 
 // console.log(fibo(8))
 // fibonacci(8);
-console.log(mergeSort([105, 79, 100, 110]));
+console.log(mergeSort([ 12, 8, 9, 3, 11, 5, 4]));
